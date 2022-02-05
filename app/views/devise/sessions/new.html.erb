@@ -2,18 +2,17 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">Log in</h2>
+        <h2 class="card-title mb-4">Log in</h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="mb-3">
-            <%= f.label :email, class: 'form-label'%>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          <div class="form-floating mb-3">
+            <%= f.email_field :email, autofocus: true, class: 'form-control', id: 'email_field', placeholder: 'example@example.com' %>
+            <%= f.label :email, for: 'email_field'%>
           </div>
-          <div class="mb-3">
-            <%= f.label :password, class: 'form-label' %>
-            <br/>
-            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control','aria-describedby': "passwordHelp" %>
+          <div class="form-floating mb-3">
+            <%= f.password_field :password, class: 'form-control', id: 'pass_field', 'aria-describedby': "passwordHelp", placeholder: 'Password' %>
+            <%= f.label :password, for: 'pass_field' %>
             <% if @minimum_password_length %>
               <div id="passwordHelp" class="form-text"><em>(<%= @minimum_password_length %> characters minimum)</em></div>
             <% end %>
