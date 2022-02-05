@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Devise gem for Auth system
 gem 'devise'
 gem 'iex-ruby-client'
+gem 'font-awesome-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
