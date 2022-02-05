@@ -1,1 +1,7 @@
 @import "bootstrap/dist/css/bootstrap";
+
+.hamburger {
+  --bs-text-opacity: 1;
+  border-color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+  font-size: 1.5rem !important;
+}
