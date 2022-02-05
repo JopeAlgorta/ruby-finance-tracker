@@ -1,4 +1,13 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-<%= link_to 'Login', new_user_session_path %>
+<main class="container px-0">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-7 px-0">
+      <h1 class="display-4 fst-italic">Welcome to the FinTracker App!</h1>
+      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+    </div>
+  </div>
+</main>
+
+<% if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, class: 'btn btn-outline-secondary btn-sm', method: :delete %>
+<% end %>
