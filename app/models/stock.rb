@@ -6,11 +6,13 @@ class Stock < ApplicationRecord
       secret_token: Rails.application.credentials.iex[:secret_token],
       endpoint: Rails.application.credentials.iex[:endpoint]
     )
-    
-    name = client.company(ticker).company_name
-    last_price = client.price(ticker)
+    begin
+      name = client.company(ticker).company_name
+      last_price = client.price(ticker)
+    rescue => exception
+      return nil
+    end
 
-    new ticker: ticker, name: name, last_price: last_price
+    new ticker: ticker.upcase, name: name, last_price: last_price
   end
-
 end

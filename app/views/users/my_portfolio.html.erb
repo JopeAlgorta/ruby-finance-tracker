@@ -3,11 +3,11 @@
 
 <div class="row mt-5">
   <div class="col-lg-9">
-    <%= form_tag search_stock_path, method: :get do %>
+    <%= form_tag search_stock_path, remote: true, method: :get do %>
       <div class="mb-3">
         <%= label_tag 'stock', 'Search stocks', class: 'form-label' %>
         <div class="input-group mb-3">
-          <%= text_field_tag :stock, params[:stock], id: 'stock', placeholder: 'AAPL', autofocus: true, class: 'form-control', 'aria-describedby': 'button-addon2' %>
+          <%= text_field_tag :stock, params[:stock], id: 'stock', placeholder: 'e.g. AAPL', autofocus: true, class: 'form-control text-uppercase', 'aria-describedby': 'button-addon2', required: true %>
           <%= button_tag type: :submit, class: 'btn btn-warning', id: 'button-addon2' do %>
             <%= fa_icon 'search' %>&nbsp;
             Search
@@ -17,23 +17,6 @@
     <% end %>
   </div>
 </div>
-<% if @stock %>
-  <div class="row">
-    <div class="col-lg-9">
-      <div class="card card-header">
-        <div class="card-body">
-          <div class="row justify-content-between align-items-center">
-            <div class="col-9">
-              <h5 class="card-title"><%= @stock.name %></h5>
-              <h6 class="card-subtitle mb-2 text-muted mb-0"><%= @stock.ticker %></h6>
-            </div>
-            <div class="col-3">
-              <h3 class="card-title text-end fw-bold mb-0"><span class="badge bg-info rounded-pill text-dark">$ <%= @stock.last_price %></span></h3>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<div class="row">
+  <div class="col-lg-9" id="results"></div>
+</div>

@@ -1,13 +1,13 @@
 <nav class="navbar navbar-dark bg-dark mb-3">
   <div class="container py-2">
     <%= link_to 'FinTracker', root_path, class: 'navbar-brand fw-bold fs-3 text-warning' %>
-    <div>
+    <div class="d-flex align-items-center">
       <% if not user_signed_in? %>
         <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-success me-2' %>
         <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-info me-2' %>
       <% end %>
-      <button class="navbar-toggler" style="border-color: rgba(var(--bs-warning-rgb) !important" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-        <%= fa_icon 'bars 2x', class: 'text-warning' %>
+      <button class="navbar-toggler hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <%= fa_icon 'bars', class: 'text-warning' %>
       </button>
     </div>
     <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
