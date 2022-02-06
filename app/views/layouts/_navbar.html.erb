@@ -29,10 +29,12 @@
             <% if user_signed_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= current_user.email.split('@')[0] %>
+                <%= current_user.full_name %>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="offcanvasNavbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li>
+                  <%= link_to 'Edit profile', edit_user_registration_path, class: 'dropdown-item' %>
+                </li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <% if user_signed_in? %>
                   <li>

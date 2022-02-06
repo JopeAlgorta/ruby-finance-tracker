@@ -21,4 +21,11 @@ class User < ApplicationRecord
   def can_track? ticker
     reach_maximum? and not is_tracking? ticker
   end
+
+  def full_name
+    if first_name.nil? and last_name.nil?
+      return email.split('@')[0]
+    end
+    "#{first_name || ""} #{last_name || ""}"
+  end
 end
