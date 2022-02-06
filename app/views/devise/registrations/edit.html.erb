@@ -37,7 +37,7 @@
             <%= f.label :password_confirmation, for: 'conf_field' %>
           </div>
           <div class="form-floating mb-3">
-            <%= f.password_field :current_password, id: 'curr_field', autocomplete: "curr-password", class: 'form-control', 'aria-describedby': "passwordHelp2", placeholder: 'Password' %>
+            <%= f.password_field :current_password, id: 'curr_field', required: true, autocomplete: "curr-password", class: 'form-control', 'aria-describedby': "passwordHelp2", placeholder: 'Password' %>
             <%= f.label :current_password, id: 'curr_field' %>
             <div id="passwordHelp2" class="form-text"><em>We need your current password to save your changes.</em></div>
           </div>
