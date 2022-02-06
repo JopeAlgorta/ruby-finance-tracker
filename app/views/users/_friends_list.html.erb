@@ -1,0 +1,30 @@
+<table class="table table-dark table-hover" style="border-radius: 3px; overflow: hidden">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-end">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @friends.any? %>
+      <% @friends.each do |f| %>
+        <tr>
+          <th scope="row"><%= f.first_name %> <%= f.last_name %></th>
+          <td><%= f.email %></td>
+          <td class="text-end">
+            <%= link_to fa_icon('times', class: 'text-danger', style: 'font-size: 20px'),
+                    friendship_path(f), data: {confirm: 'Are you sure?' }, method: :delete, class: 'me-2' %>
+            <%= link_to fa_icon('arrow-circle-right', class: 'text-warning', style: 'font-size: 20px'), user_path(f) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td class="text-muted text-center" colspan="4">
+          No friends to show
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

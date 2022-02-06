@@ -3,8 +3,9 @@
     <div class="d-flex align-items-center">
       <%= link_to fa_icon('dollar sign', text: 'FinTracker'), root_path, class: 'navbar-brand fw-bold fs-3 text-warning me-4' %>
       <ul class="navbar-nav flex-row">
-        <li class="nav-item me-2"><%= link_to 'Portfolio', portfolio_path, class: "nav-link #{' active' if request.path == portfolio_path}"%></li>
-        <li class="nav-item"><%= link_to 'Friends', '#', class: "nav-link #{' active' if request.path == "todo"}"%></li>
+        <li class="nav-item me-4"><%= link_to 'Portfolio', portfolio_path, class: "nav-link #{' active' if request.path == portfolio_path}"%></li>
+        <li class="nav-item me-4"><%= link_to 'Friends', my_friends_path, class: "nav-link #{' active' if request.path == my_friends_path}"%></li>
+        <li class="nav-item"><%= link_to 'Profile', user_path(current_user), class: "nav-link #{' active' if request.path == user_path(current_user)}"%></li>
       </ul>
     </div>
     <div class="d-flex align-items-center">
@@ -24,9 +25,7 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item"><%= link_to 'Portfolio', portfolio_path, class: "nav-link #{' active' if request.path == portfolio_path}"%></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+          <li class="nav-item"><%= link_to 'Friends', my_friends_path, class: "nav-link #{' active' if request.path == my_friends_path}"%></li>
             <% if user_signed_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,14 +35,15 @@
                 <li>
                   <%= link_to 'Edit profile', edit_user_registration_path, class: 'dropdown-item' %>
                 </li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <% if user_signed_in? %>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-
-                  <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
-                <% end %>
+                <li>
+                  <%= link_to 'Go to profile', user_path(current_user), class: 'dropdown-item' %>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li>
+                  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                </li>
               </ul>
             </li>
             <% end %>

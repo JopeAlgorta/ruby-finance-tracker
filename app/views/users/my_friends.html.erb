@@ -1,0 +1,26 @@
+<h1>My Friends</h1>
+<h6 class="text-muted fw-normal">Gain knowledge from your friends!</h6>
+<div class="row mt-5">
+  <div class="col-lg-9">
+    <%= form_tag search_friends_path, remote: true, method: :get do %>
+      <div class="mb-3">
+        <%= label_tag :friend, 'Search friends', class: 'form-label' %>
+        <div class="input-group mb-3">
+          <%= text_field_tag :friend, params[:friend], id: :friend, placeholder: 'e.g. John Doe or john@example.com', autofocus: true, class: 'form-control', 'aria-describedby': 'button-addon2', required: true %>
+          <%= button_tag type: :submit, class: 'btn btn-warning', id: 'button-addon2' do %>
+            <%= fa_icon 'search' %>&nbsp;
+            Search
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-lg-9" id="friends"></div>
+</div>
+<div class="row mt-3">
+  <div class="col-lg-9">
+    <%= render 'friends_list' %>
+  </div>
+</div>

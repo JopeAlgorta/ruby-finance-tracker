@@ -9,6 +9,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def self.search_friends search_string
+    search_string.strip!
+    @friends = (search_by('first_name', search_string) + search_by('last_name', search_string) + search_by('email', search_string)).uniq
+  end
+
   def is_tracking? ticker
     stock = Stock.check_db ticker
     return false unless stock
@@ -29,5 +34,15 @@ class User < ApplicationRecord
       return email.split('@')[0]
     end
     "#{first_name || ""} #{last_name || ""}"
+  end
+
+  def friend_of friend
+    friends.include? friend
+  end
+
+  private
+
+  def self.search_by field, param
+    User.where("lower(#{field}) like ?", "%#{param.downcase}%")
   end
 end

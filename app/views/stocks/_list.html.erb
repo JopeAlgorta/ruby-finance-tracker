@@ -15,8 +15,23 @@
           <td><%= s.ticker %></td>
           <td>$ <%= s.last_price %></td>
           <td class="text-end">
-            <%= link_to fa_icon('trash', class: 'text-danger'),
+            <% if !@user or current_user == @user %>
+              <%= link_to fa_icon('trash', class: 'text-danger'),
                     user_stock_path(s.id), data: {confirm: 'Are you sure?' }, method: :delete %>
+            <% else %>
+              <% if !current_user.can_track? s.ticker %>
+                <span class="badge bg-secondary text-wrap" style="font-size: .75rem;">
+                  <% if current_user.is_tracking? s.ticker %>
+                    Already tracking.
+                  <% else %>
+                    Maximum reached.
+                  <% end %>
+                </span>            
+              <% else %>
+                <%= link_to fa_icon('copy', class: 'text-info'),
+                    user_stocks_copy_path(s), data: {confirm: 'Are you sure?' }, method: :post %>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       <% end %>

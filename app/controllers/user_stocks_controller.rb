@@ -8,8 +8,10 @@ class UserStocksController < ApplicationController
       stock.save
     end 
     if current_user.can_track? ticker
-      @user_stock = UserStock.create user: current_user, stock: stock
-      flash[:notice] = "Stock #{stock.name} was successfully added to your portfolio."
+      new_stock = current_user.user_stocks.build stock_id: stock.id
+      if new_stock.save
+        flash[:notice] = "Stock #{stock.name} was successfully added to your portfolio."
+      end
     else
       flash[:alert] = "Maximum number of tracked stocks reached! Consider removing some to add this one."
     end
@@ -23,5 +25,18 @@ class UserStocksController < ApplicationController
     if user_stock.destroy
       redirect_to portfolio_path, notice: "Stock #{stock.name} removed from your portfolio."
     end
+  end
+
+  def copy
+    stock = Stock.find params[:id]
+    if current_user.can_track? stock.ticker
+      new_stock = current_user.user_stocks.build stock_id: stock.id
+      if new_stock.save
+        flash[:notice] = "Stock #{stock.name} was successfully added to your portfolio."
+      end
+    else
+      flash[:alert] = "Maximum number of tracked stocks reached! Consider removing some to add this one."
+    end
+    redirect_back(fallback_location: root_path)
   end
 end

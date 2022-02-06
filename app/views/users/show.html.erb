@@ -1,0 +1,31 @@
+<div class="mb-3">
+  <h1 class="display-4"><%= @user.full_name %></h1>
+  <h4 class="text-muted"><%= @user.email %></h4>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <% if current_user == @user %>
+      <%= link_to fa_icon('edit', text: 'Edit profile'), 
+          edit_user_registration_path,
+          class: 'btn btn-secondary' %>
+    <% else %>
+      <% if current_user.friend_of @user %>
+        <%= link_to fa_icon('user-times', text: 'Unfollow'), 
+          friendship_path(@user), method: :delete,
+          class: 'btn btn-danger' %>            
+      <% else %>
+        <%= link_to fa_icon('user-plus', text: 'Follow'), 
+          friendships_path(id: @user.id), method: :post,
+          class: 'btn btn-success' %>            
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row mb-3">
+  <h3>Portfolio </h3>
+</div>
+<div class="row">
+  <div class="col-lg-9">
+    <%= render 'stocks/list' %>
+  </div>
+</div>
