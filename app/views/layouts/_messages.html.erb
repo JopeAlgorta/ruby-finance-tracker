@@ -1,19 +1,19 @@
 <% if notice %>
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <p><%= notice %></p>
+    <p class="mb-0"><%= notice %></p>
   </div>
 <% else
      if alert %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      <p><%= alert %></p>
+      <p class="mb-0"><%= alert %></p>
     </div>
   <% else %>
     <% flash.each do |name, msg| %>
       <div class="alert alert-<%= name == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <p><%= msg %></p>
+        <p class="mb-0"><%= msg %></p>
       </div>
     <% end %>
   <% end %>

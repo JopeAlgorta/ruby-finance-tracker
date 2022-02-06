@@ -14,7 +14,10 @@
           <th scope="row"><%= s.name %></th>
           <td><%= s.ticker %></td>
           <td>$ <%= s.last_price %></td>
-          <td></td>
+          <td class="text-end">
+            <%= link_to fa_icon('trash', class: 'text-danger'),
+                    user_stock_path(s.id), data: {confirm: 'Are you sure?' }, method: :delete %>
+          </td>
         </tr>
       <% end %>
     <% else %>
